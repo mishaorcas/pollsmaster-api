@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pollsmaster — Инструкция</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f6f8fb;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 40px 48px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .header-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 40px;
+      line-height: 1;
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .header .subtitle {
+      font-size: 14px;
+      color: #666;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 32px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eef1f5;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #374151;
+    }
+
+    ul, ol {
+      margin: 0 0 14px 22px;
+      color: #374151;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .note {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 14px;
+      color: #92400e;
+    }
+
+    .tile-grid {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .tile-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e5e9f0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .tile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 20px;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .tile.green   { background: rgba(22, 163, 74, 0.85); }
+    .tile.purple  { background: rgba(147, 51, 234, 0.85); }
+    .tile.red     { background: rgba(220, 38, 38, 0.85); }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 16px 18px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 14px 0;
+    }
+
+    pre .k { color: #93c5fd; }   /* key */
+    pre .s { color: #a5d6a7; }   /* string */
+    pre .b { color: #f9a8d4; }   /* boolean */
+
+    /* Пример опроса в стиле генератора */
+    .poll-preview {
+      position: relative;
+      margin: 16px 0 20px;
+      border: 1px solid #f0e0de;
+      border-radius: 10px;
+      background: #fff;
+      padding: 28px 20px 20px 44px;
+      overflow: hidden;
+    }
+
+    .poll-drag-handle {
+      position: absolute;
+      left: 8px;
+      top: 39px;
+      width: 10px;
+      height: 18px;
+    }
+
+    .poll-drag-handle::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: 0;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #b8b8b8;
+      box-shadow:
+        0 6px #b8b8b8,
+        0 12px #b8b8b8,
+        5px 0 #b8b8b8,
+        5px 6px #b8b8b8,
+        5px 12px #b8b8b8;
+    }
+
+    .poll-preview {
+      font-family: "Times New Roman", Times, serif;
+      color: #db2113;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .poll-title {
+      margin: 0 0 1px 0;
+    }
+
+    .poll-question {
+      margin: 0;
+    }
+
+    .poll-option {
+      margin: 0;
+      height: 29px;
+      white-space: nowrap;
+    }
+
+    .poll-emoji {
+      display: inline-block;
+      width: 27px;
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+      font-size: 20px;
+      vertical-align: -1px;
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid #e5e5e5;
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px 10px; }
+      .container { padding: 24px 20px; }
+      .header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="header-icon" aria-label="Pollsmaster">✅</span>
+      <div>
+        <h1>Pollsmaster</h1>
+        <div class="subtitle">Конвертация опросов из текста в JSON-формат · v1.0.0</div>
+      </div>
+    </div>
+
+    <h2>Что делает расширение</h2>
+    <p>
+      Pollsmaster автоматически распознаёт скопированный текст опроса с вопросами
+      и ответами и заменяет его в буфере обмена готовым JSON-кодом. Больше не нужно
+      вручную собирать опрос в конфиге или использовать для этого ИИ — просто
+      скопируйте текст, вставьте результат — и данные готовы к использованию.
+    </p>
+    <div class="note">
+      В десктопном приложении Google Docs расширение не работает — для конвертации <a href="https://mishaorcas.github.io/pollsmaster-api/" target="_blank" rel="noopener noreferrer">используйте именно веб-версию</a>.
+    </div>
+
+    <h2>Формат входящего текста</h2>
+    <p>
+      Опрос должен состоять минимум из <strong>одного вопроса</strong> и
+      <strong>одного ответа</strong>, начинающегося с эмодзи.
+      Каждая строка ответа начинается с иконки, за которой идёт текст ответа.
+    </p>
+
+    <h2>Как пользоваться</h2>
+    <ol>
+      <li>Выделите в визивиге текст опроса (вопрос + ответы).</li>
+      <li>Нажмите <strong>Ctrl+C</strong> (на macOS — <strong>Cmd+C</strong>).</li>
+      <li>Если расширение включено — вместо текста в буфер обмена попадёт готовый JSON.</li>
+      <li>Вставьте результат в конфиг (<strong>Ctrl+V</strong> / на macOS — <strong>Cmd+V</strong>).</li>
+    </ol>
+
+    <h2>Аналогии раскладок для macOS</h2>
+    <p>
+      Расширение работает одинаково на Windows/Linux и macOS — отличаются только
+      клавиши-модификаторы. Ниже приведено соответствие клавиш.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Windows / Linux</th>
+          <th>macOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Ctrl</code> (Control)</td>
+          <td><code>Cmd</code> / <code>⌘</code> (Command)</td>
+        </tr>
+        <tr>
+          <td><code>Alt</code></td>
+          <td><code>Option</code> / <code>⌥</code></td>
+        </tr>
+        <tr>
+          <td><code>Ctrl+C</code> (копировать)</td>
+          <td><code>Cmd+C</code> / <code>⌘+C</code></td>
+        </tr>
+        <tr>
+          <td><code>Ctrl+V</code> (вставить)</td>
+          <td><code>Cmd+V</code> / <code>⌘+V</code></td>
+        </tr>
+        <tr>
+          <td><code>Ctrl+Shift+…</code> (горячая клавиша)</td>
+          <td><code>Cmd+Shift+…</code> / <code>⌘+Shift+…</code></td>
+        </tr>
+        <tr>
+          <td><code>Backspace</code> / <code>Delete</code></td>
+          <td><code>Delete</code> / <code>⌫</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      При задании горячей клавиши на macOS используйте комбинацию с
+      <code>Cmd</code> (⌘), например <code>Cmd+Shift+Y</code> — так же, как вы
+      привыкли использовать <code>Ctrl+Shift+Y</code> на Windows/Linux.
+    </p>
+
+    <h2>Пример</h2>
+    <p>Так выглядит опрос в визивиге:</p>
+    <div class="poll-preview">
+      <div class="poll-drag-handle" aria-hidden="true"></div>
+      <div class="poll-title">[ДОБАВИТЬ ОПРОС:</div>
+      <div class="poll-question">Какой язык программирования вам нравится?</div>
+      <div class="poll-option"><span class="poll-emoji">🚀</span>Python</div>
+      <div class="poll-option"><span class="poll-emoji">💎</span>Ruby</div>
+      <div class="poll-option"><span class="poll-emoji">🦀</span>Rust]</div>
+    </div>
+    <p>После копирования в буфер обмена попадает такой JSON:</p>
+    <pre>{
+  <span class="k">"mode"</span>: <span class="s">"percent"</span>,
+  <span class="k">"answers"</span>: [
+    {
+      <span class="k">"icon"</span>: <span class="s">"🚀"</span>,
+      <span class="k">"answer"</span>: <span class="s">"Python"</span>
+    },
+    {
+      <span class="k">"icon"</span>: <span class="s">"💎"</span>,
+      <span class="k">"answer"</span>: <span class="s">"Ruby"</span>
+    },
+    {
+      <span class="k">"icon"</span>: <span class="s">"🦀"</span>,
+      <span class="k">"answer"</span>: <span class="s">"Rust"</span>
+    }
+  ],
+  <span class="k">"question"</span>: <span class="s">"Какой язык программирования вам нравится?"</span>,
+  <span class="k">"needLogin"</span>: <span class="b">true</span>
+}</pre>
+
+    <h2>Опрос с чекбоксами или опрос с возможностью выбрать несколько вариантов ответа</h2>
+    <p>
+      Если вы повторно скопируете <strong>тот же самый опрос</strong> в течение
+      короткого времени, результат будет помечен как опрос с несколькими вариантами ответа
+      (добавляется поле <code>isMultipleChoice: true</code>).
+    </p>
+
+    <h2>Управление расширением</h2>
+    <p>Нажмите на иконку Pollsmaster на панели инструментов браузера, чтобы открыть попап с настройками:</p>
+    <ul>
+      <li>
+        <strong>Создать новый конфиг</strong> — ссылка в персефоне на страницу создания нового конфигура.
+      </li>
+      <li>
+        <strong>Включить расширение</strong> — переключатель активности. При переключении
+        на иконке браузера на короткое время появляется бейдж <code>ON</code> (зелёный)
+        или <code>OFF</code> (красный).
+      </li>
+      <li>
+        <strong>Показывать уведомления</strong> — включает/выключает всплывающие
+        сигналы при конвертации опроса.
+      </li>
+      <li>
+        <strong>Горячая клавиша</strong> — кликните по полю и нажмите свободную комбинацию
+        (например, <code>Ctrl+?</code>), чтобы быстро включать и выключать
+        расширение в любой вкладке. Чтобы убрать клавишу — нажмите <code>Backspace</code>
+        или <code>Delete</code>.
+      </li>
+    </ul>
+
+    <h2>Всплывающие уведомления</h2>
+    <p>
+      При каждом действии в правом нижнем углу страницы появляется цветная плашка,
+      которая исчезает примерно через секунду:
+    </p>
+    <div class="tile-grid">
+      <div class="tile-item">
+        <span class="tile green">👍</span>
+        <span>Опрос конвертирован в JSON</span>
+      </div>
+      <div class="tile-item">
+        <span class="tile purple">✌️</span>
+        <span>Опрос помечен как множественный выбор</span>
+      </div>
+      <div class="tile-item">
+        <span class="tile green">✅</span>
+        <span>Расширение включено</span>
+      </div>
+      <div class="tile-item">
+        <span class="tile red">❌</span>
+        <span>Расширение выключено</span>
+      </div>
+    </div>
+    <div class="note">
+      Сигналы «включено/выключено» (✅/❌) показываются всегда — даже если уведомления
+      отключены, чтобы вы не пропустили изменение состояния.
+    </div>
+    <div class="footer">
+      Pollsmaster v1.0.0 · Расширение для браузера
+    </div>
+  </div>
+</body>
+</html>

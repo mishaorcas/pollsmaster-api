@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Инструкция — Pollsmaster</title>
+    <style>
+        :root {
+            --bg: #14583a;
+            --panel: #ffffff;
+            --border: #b9ddcb;
+            --text: #1f3a2c;
+            --muted: #47685a;
+            --accent: #289e66;
+            --accent-soft: #e8f7ef;
+            --green: #1a7d4e;
+            --green-soft: #dff5ea;
+            --hero-top: #39b97a;
+            --hero-mid: #1a7d4e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", "Noto Sans", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1200px 500px at 50% -100px, var(--hero-top), transparent 70%),
+                linear-gradient(180deg, var(--hero-mid), var(--bg));
+            padding: 32px 16px;
+            line-height: 1.7;
+        }
+
+        .app {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        header {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            padding: 24px 26px;
+            margin-bottom: 22px;
+        }
+
+        .panel h2 {
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .panel.green h2 {
+            color: var(--green);
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        ul, ol {
+            margin: 0 0 14px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: var(--accent-soft);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .green code {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        kbd {
+            background: var(--accent-soft);
+            border: 1px solid var(--border);
+            border-bottom-width: 2px;
+            border-radius: 4px;
+            padding: 0 6px;
+            font-size: 13px;
+        }
+
+        .note {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 14px;
+        }
+
+        .green .note {
+            background: var(--green-soft);
+            border-left-color: var(--green);
+        }
+
+        .example {
+            background: #f4f8fb;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14px;
+            margin-top: 6px;
+            white-space: pre-line;
+        }
+
+        footer {
+            text-align: center;
+            color: #fff;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>✅ Инструкция: Pollsmaster</h1>
+            <p>Простой помощник для создания опросов и доработки кода из верстака. Всё делается за несколько секунд — вводите текст, копируете результат.</p>
+        </header>
+
+        <section class="panel">
+            <h2>С чего начать</h2>
+            <p>Наверху страницы два раздела — переключайтесь между ними кнопками:</p>
+            <ul>
+                <li><strong>✅ Генератор опросов</strong> — превращает обычный текст в готовый код опроса.</li>
+                <li><strong>🚀 UGC верстак</strong> — приводит код <b>из верстака</b> к нужному формату.</li>
+            </ul>
+            <p>В обоих разделах работа устроена одинаково: слева поле для ввода, справа — результат, который остаётся скопировать.</p>
+        </section>
+
+        <section class="panel">
+            <h2>Генерация опроса в JSON для конфига</h2>
+            <ol>
+                <li>Вставьте текст опроса — он должен стоять в первой строке левого поля.</li>                
+                <li>Если нужно разрешить выбор сразу нескольких вариантов — включите переключатель <strong>«⚡️ Опрос с чекбоксами»</strong>.</li>
+                <li>Готовый код появится в правом поле автоматически, как только вы вставите опрос.</li>
+                <li>Нажмите <strong>«Копировать результат»</strong> и вставьте код в публикацию.</li>
+            </ol>
+
+            <div class="example"><strong>Какой язык программирования вам нравится?</strong>
+🚀 Python
+💎 Ruby
+🦀 Rust</div>
+
+            <div class="note">💡 Если в формате допущена ошибка (например, пропущен эмодзи или пустой вариант), под полем появится понятная подсказка — просто исправьте строку.</div>
+        </section>
+
+        <section class="panel green">
+            <h2>Обработка кода (UGC верстак)</h2>
+            <ol>
+                <li>Вставьте в левое поле код, скопированный из верстака.</li>
+                <li>Обработка запустится автоматически — результат появится в правом поле.</li>
+                <li>При необходимости нажмите <strong>«Копировать результат»</strong> и вставьте готовый код куда нужно.</li>
+            </ol>
+            <p>Что умеет инструмент:</p>
+            <ul>
+                <li><strong>Расставляет заголовки</strong> — добавляет ссылки-якоря на разделы из оглавления.</li>
+                <li><strong>Меняет эмодзи на картинки</strong> <a href="https://t-j.ru/ironiya-sudby-yes-or-not/" target="_blank" rel="noopener noreferrer">в подборках с плюсами и минусами</a> — ➕ и ➖ в заголовках превращаются в аккуратные бирки «плюс» и «минус».</li>
+                <li><strong>Оформляет плашки «за» и «против»</strong> — <a href="https://t-j.ru/friends-with-ai-pros-cons/" target="_blank" rel="noopener noreferrer">плашкам присваивается нужный цвет</a> исходя из смысла подзаголовка.</li>
+                <li><strong>Оборачивает авторов в код</strong> — автоматически превращает ссылку на автора и подпись в нужную конструкцию с атрибутом <b>prop="additional"</b>.</li>
+                <li><strong>Убирает лишнее</strong> — удаляет пустые блоки и лишние пустые строки, чтобы код был аккуратным.</li>
+            </ul>
+
+            <div class="note">💡 Если результат приходит не сразу, подождите пару мгновений — обработка занимает секунды.</div>
+        </section>
+
+        <section class="panel">
+            <h2>Полезные кнопки и клавиши</h2>
+            <ul>
+                <li><strong>Вставить из буфера</strong> — переносит скопированный текст прямо в поле ввода.</li>
+                <li><strong>Очистить всё</strong> — стирает содержимое полей текущего раздела.</li>
+                <li><strong>Копировать результат</strong> — копирует готовый код в буфер обмена.</li>
+            </ul>
+            <p>Горячие клавиши:</p>
+            <ul>
+                <li><kbd>Ctrl</kbd> + <kbd>Enter</kbd> — запустить обработку сейчас.</li>
+                <li><kbd>Esc</kbd> — очистить поля активного раздела.</li>
+            </ul>
+            <div class="note">🖱️ Обычно запускать обработку вручную не нужно — всё происходит автоматически при вводе.</div>
+        </section>
+        
+        <footer>Инструкция по использованию Pollsmaster</footer>
+    </div>
+</body>
+</html>
