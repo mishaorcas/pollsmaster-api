@@ -1,0 +1,12 @@
+{
+  "name": "pollsmaster-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pollsmaster — статическая веб-версия сервиса опросов и UGC-верстки для GitHub Pages",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/serve.js"
+  }
+}

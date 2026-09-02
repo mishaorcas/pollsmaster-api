@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pollsmaster</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <main class="app">
+        <header class="header">
+            <h1>Pollsmaster</h1>
+        </header>
+
+        <section class="tabs panel" role="tablist" aria-label="Разделы приложения">
+            <button class="tab-btn active" id="pollTabBtn" type="button" role="tab" aria-controls="pollTabPanel" aria-selected="true" data-tab="poll">
+                ✅ Генератор опросов
+            </button>
+            <button class="tab-btn" id="htmlTabBtn" type="button" role="tab" aria-controls="htmlTabPanel" aria-selected="false" data-tab="html">
+                🚀 UGC верстак
+            </button>
+        </section>
+
+        <section class="tab-panel active" id="pollTabPanel" data-panel="poll" role="tabpanel" aria-labelledby="pollTabBtn">
+            <p class="hint">Первая строка - вопрос, каждая следующая строка - вариант в формате: эмодзи и текст ответа.</p>
+
+            <section class="panel toolbar">
+                <label class="toggle" for="multipleChoiceToggle">
+                    <input type="checkbox" id="multipleChoiceToggle">
+                    <span>⚡️ Опрос с чекбоксами</span>
+                </label>
+                <button class="btn" id="pollCopyBtn" type="button">Копировать JSON</button>
+                <button class="btn secondary" id="pollPasteBtn" type="button">Вставить из буфера</button>
+                <button class="btn secondary" id="pollClearBtn" type="button">Очистить всё</button>
+            </section>
+
+            <p class="error-line" id="pollError" aria-live="polite"></p>
+
+            <section class="panel grid">
+                <article class="editor">
+                    <div class="editor-header">Текст опроса</div>
+                    <label for="pollInputText" class="sr-only">Текст опроса</label>
+                    <textarea id="pollInputText" spellcheck="false" placeholder="Вставьте опрос из обвеса..."></textarea>
+                </article>
+                <article class="editor">
+                    <div class="editor-header">JSON код</div>
+                    <label for="pollOutputText" class="sr-only">JSON код</label>
+                    <textarea id="pollOutputText" spellcheck="false" readonly placeholder="Сгенерированный JSON появится здесь..."></textarea>
+                </article>
+            </section>
+        </section>
+
+        <section class="tab-panel" id="htmlTabPanel" data-panel="html" role="tabpanel" aria-labelledby="htmlTabBtn" hidden>
+            <p class="hint">Горячие клавиши: Ctrl+Enter - запустить обработку, Esc - очистить поля активной вкладки.</p>
+            <div id="status" class="status" aria-live="polite"></div>
+
+            <section class="panel toolbar">
+                <button class="btn" id="copyBtn" type="button">Копировать результат</button>
+                <button class="btn secondary" id="pasteBtn" type="button">Вставить из буфера</button>
+                <button class="btn secondary" id="clearBtn" type="button">Очистить всё</button>
+            </section>
+
+            <section class="panel grid">
+                <article class="editor">
+                    <div class="editor-header">Поле для исходного кода из верстака</div>
+                    <label for="inputText" class="sr-only">Поле для исходного кода из верстака</label>
+                    <textarea id="inputText" spellcheck="false" placeholder="Вставьте код из верстака для обработки..."></textarea>
+                </article>
+                <article class="editor">
+                    <div class="editor-header">Результат</div>
+                    <label for="outputText" class="sr-only">Результат</label>
+                    <textarea id="outputText" spellcheck="false" readonly placeholder="Результат обработки появится здесь..."></textarea>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script type="module" src="assets/app.js"></script>
+</body>
+</html>
